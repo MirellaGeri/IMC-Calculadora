@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
     var height = 170.0
     var weight = 70.0
     
@@ -34,6 +36,28 @@ class ViewController: UIViewController {
         let heightInMeters = height / 100
         let result = weight / pow(heightInMeters,2)
         resultLabel.text = String(format: "%.2f", result)
+        switch result {
+        case 0..<18.5:
+            descriptionLabel.text = "Bajo Peso"
+            resultLabel.textColor = UIColor.bmiUnderweight
+            descriptionLabel.textColor = UIColor.bmiUnderweight
+        case 18.5..<25.0:
+            descriptionLabel.text = "Peso Normal"
+            resultLabel.textColor = UIColor.bmiNormal
+            descriptionLabel.textColor = UIColor.bmiNormal
+        case 25.0..<30.0:
+            descriptionLabel.text = "Sobrepeso"
+            resultLabel.textColor = UIColor.bmiOverweight
+            descriptionLabel.textColor = UIColor.bmiOverweight
+        case 30.0..<35.0:
+            descriptionLabel.text = "Obesidad"
+            resultLabel.textColor = UIColor.bmiObesity
+            descriptionLabel.textColor = UIColor.bmiObesity
+        default:
+            descriptionLabel.text = "Obesidad Extrema"
+            resultLabel.textColor = UIColor.bmiExtremeObesity
+            descriptionLabel.textColor = UIColor.bmiExtremeObesity
+        }
     }
 }
 
